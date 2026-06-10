@@ -23,15 +23,15 @@ description: Use to check Task 3-6 PR (custom mock data files extending the ODat
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout`. On failure: stop.
+Invoke `pr-checkout`. On failure: stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with pattern `^feature/task-3-6$`, base `main`. Record criteria 1–2.
+Invoke `branch-validate` with pattern `^feature/task-3-6$`, base `main`. Record criteria 1–2.
 
 ### 3. Manifest check
 
-Invoke `shared/ui5-manifest-parse` with `path`.
+Invoke `ui5-manifest-parse` with `path`.
 - Criterion 5: pass if at least one dataSource entry references `localService/mockdata` or has `settings.localUri`.
 
 ### 4. Static checks
@@ -42,13 +42,13 @@ Invoke `shared/ui5-manifest-parse` with `path`.
 
 ### 5. App launch
 
-Invoke `shared/ui5-app-launch` with `script = "start-mock"`.
+Invoke `ui5-app-launch` with `script = "start-mock"`.
 - On failure: mark criteria 6–7 fail, attach log, skip to report.
 - On success: mark criterion 6 pass.
 
 ### 6. Playwright assertions
 
-Invoke `shared/playwright-assertions` with:
+Invoke `playwright-assertions` with:
 ```
 [
   {
@@ -64,4 +64,4 @@ Stop the dev server.
 
 ### 7. Report
 
-Invoke `shared/report-format` with all 7 criteria.
+Invoke `report-format` with all 7 criteria.

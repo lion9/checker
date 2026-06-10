@@ -25,13 +25,13 @@ description: Use to check Task 2-3 PR (JSON table displayed in a SAPUI5 app). In
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout` with the PR URL.
+Invoke `pr-checkout` with the PR URL.
 - On failure: output the error, stop. No further steps run.
 - On success: store `path`, `branch`, `base`, `sha`.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with:
+Invoke `branch-validate` with:
 - `branch` = branch from checkout
 - `expected_pattern` = `^feature/task-2-3$`
 - `base` = base from checkout
@@ -41,7 +41,7 @@ Record results for criteria 1 and 2.
 
 ### 3. Manifest check
 
-Invoke `shared/ui5-manifest-parse` with `path`.
+Invoke `ui5-manifest-parse` with `path`.
 - If error: mark criterion 3 `fail`, detail = parse error. Continue.
 - If success: mark criterion 3 `pass`.
 
@@ -70,13 +70,13 @@ Use Glob and Read on `path` directly:
 
 ### 5. Runtime — launch app
 
-Invoke `shared/ui5-app-launch` with `path` and `script = "start"`.
+Invoke `ui5-app-launch` with `path` and `script = "start"`.
 - On failure: mark criteria 8 and 9 as `fail`, attach `log` as detail. Skip to step 7.
 - On success: mark criterion 8 `pass`, store `url` and `pid`.
 
 ### 6. Runtime — Playwright assertions
 
-Invoke `shared/playwright-assertions` with `url` and:
+Invoke `playwright-assertions` with `url` and:
 ```
 [
   {
@@ -93,7 +93,7 @@ Stop the dev server: `kill <pid>` (or `npm stop` in `path`).
 
 ### 7. Report
 
-Invoke `shared/report-format` with:
+Invoke `report-format` with:
 - `task_id` = `"2-3"`
 - `pr_url` = PR URL
 - `branch`, `sha`, `checkout_path` = from checkout result

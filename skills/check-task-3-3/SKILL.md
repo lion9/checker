@@ -24,15 +24,15 @@ description: Use to check Task 3-3 PR (date formatter and full i18n coverage). I
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout`. On failure: stop.
+Invoke `pr-checkout`. On failure: stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with pattern `^feature/task-3-3$`, base `main`. Record criteria 1–2.
+Invoke `branch-validate` with pattern `^feature/task-3-3$`, base `main`. Record criteria 1–2.
 
 ### 3. Manifest check
 
-Invoke `shared/ui5-manifest-parse` with `path`.
+Invoke `ui5-manifest-parse` with `path`.
 - Criterion 5: pass if `i18nBundle` is non-null and non-empty in the result.
 
 ### 4. Static checks
@@ -42,19 +42,19 @@ Invoke `shared/ui5-manifest-parse` with `path`.
 **Criterion 4:** Read the formatter file. Grep for a string literal or template containing `Published:` followed by a year placeholder. Pass if found. Fail detail: `"Formatter does not produce 'Published: YYYY' format"`.
 
 **Criterion 6 — i18n coverage:**
-Invoke `shared/i18n-coverage` with `path`.
+Invoke `i18n-coverage` with `path`.
 - Pass if result is empty list.
 - Fail if any offending strings found; detail = first 5 offending entries (file:line: text).
 
 ### 5. App launch
 
-Invoke `shared/ui5-app-launch` with `script = "start"`.
+Invoke `ui5-app-launch` with `script = "start"`.
 - On failure: mark criteria 7–8 fail, attach log, skip to report.
 - On success: mark criterion 7 pass.
 
 ### 6. Playwright assertions
 
-Invoke `shared/playwright-assertions` with:
+Invoke `playwright-assertions` with:
 ```
 [
   {
@@ -70,4 +70,4 @@ Stop the dev server.
 
 ### 7. Report
 
-Invoke `shared/report-format` with all 8 criteria.
+Invoke `report-format` with all 8 criteria.

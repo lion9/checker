@@ -25,15 +25,15 @@ description: Use to check Task 3-4 PR (OData mock server setup with ui5-mock). I
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout`. On failure: stop.
+Invoke `pr-checkout`. On failure: stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with pattern `^feature/task-3-4$`, base `main`. Record criteria 1–2.
+Invoke `branch-validate` with pattern `^feature/task-3-4$`, base `main`. Record criteria 1–2.
 
 ### 3. Manifest check
 
-Invoke `shared/ui5-manifest-parse` with `path`.
+Invoke `ui5-manifest-parse` with `path`.
 - Criterion 7: pass if `dataSources` array is non-empty and at least one entry has type `OData`.
 
 ### 4. Static checks
@@ -48,13 +48,13 @@ Invoke `shared/ui5-manifest-parse` with `path`.
 
 ### 5. App launch
 
-Invoke `shared/ui5-app-launch` with `script = "start-mock"`.
+Invoke `ui5-app-launch` with `script = "start-mock"`.
 - On failure: mark criteria 8–9 fail, attach log, skip to report.
 - On success: mark criterion 8 pass.
 
 ### 6. Playwright assertions
 
-Invoke `shared/playwright-assertions` with:
+Invoke `playwright-assertions` with:
 ```
 [
   {
@@ -69,4 +69,4 @@ Stop the dev server.
 
 ### 7. Report
 
-Invoke `shared/report-format` with all 9 criteria.
+Invoke `report-format` with all 9 criteria.

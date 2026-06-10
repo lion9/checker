@@ -24,11 +24,11 @@ description: Use to check Task 2-5 PR (inline title editing — clicking a cell 
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout`. On failure: stop.
+Invoke `pr-checkout`. On failure: stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with pattern `^feature/task-2-5$`, base `main`.
+Invoke `branch-validate` with pattern `^feature/task-2-5$`, base `main`.
 Record criteria 1–2.
 
 ### 3. Static checks
@@ -48,13 +48,13 @@ Record criteria 1–2.
 
 ### 4. App launch
 
-Invoke `shared/ui5-app-launch` with `script = "start"`.
+Invoke `ui5-app-launch` with `script = "start"`.
 - On failure: mark criteria 6–8 fail, attach log, skip to step 6.
 - On success: mark criterion 6 pass.
 
 ### 5. Playwright assertions
 
-Invoke `shared/playwright-assertions` with:
+Invoke `playwright-assertions` with:
 ```
 [
   {
@@ -66,7 +66,7 @@ Invoke `shared/playwright-assertions` with:
 ```
 Record result as criterion 7.
 
-For criterion 8 (Save reverts to text), invoke `shared/playwright-run-script` with:
+For criterion 8 (Save reverts to text), invoke `playwright-run-script` with:
 ```
 instructions: |
   1. The page is at <url>.
@@ -83,4 +83,4 @@ Stop the dev server.
 
 ### 6. Report
 
-Invoke `shared/report-format` with all 8 criteria.
+Invoke `report-format` with all 8 criteria.

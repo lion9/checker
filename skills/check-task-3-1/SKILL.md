@@ -25,11 +25,11 @@ description: Use to check Task 3-1 PR (delete confirmation dialog). Invoked by c
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout`. On failure: stop.
+Invoke `pr-checkout`. On failure: stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with pattern `^feature/task-3-1$`, base `main`. Record criteria 1–2.
+Invoke `branch-validate` with pattern `^feature/task-3-1$`, base `main`. Record criteria 1–2.
 
 ### 3. Static checks
 
@@ -41,13 +41,13 @@ Invoke `shared/branch-validate` with pattern `^feature/task-3-1$`, base `main`. 
 
 ### 4. App launch
 
-Invoke `shared/ui5-app-launch` with `script = "start"`.
+Invoke `ui5-app-launch` with `script = "start"`.
 - On failure: mark criteria 6–9 fail, attach log, skip to report.
 - On success: mark criterion 6 pass.
 
 ### 5. Playwright assertions
 
-Invoke `shared/playwright-assertions` with:
+Invoke `playwright-assertions` with:
 ```
 [
   {
@@ -64,7 +64,7 @@ Invoke `shared/playwright-assertions` with:
 ```
 Record results as criteria 7 and 8.
 
-For criterion 9, invoke `shared/playwright-run-script`:
+For criterion 9, invoke `playwright-run-script`:
 ```
 instructions: |
   1. Page is at <url>.
@@ -82,4 +82,4 @@ Stop the dev server.
 
 ### 6. Report
 
-Invoke `shared/report-format` with all 9 criteria.
+Invoke `report-format` with all 9 criteria.

@@ -136,6 +136,12 @@ Each is small, single-purpose, called by spokes via the `Skill` tool. Listed wit
 - **Out:** per-assertion pass/fail + screenshot path on failure.
 - **Lifecycle:** tears down the browser; spoke is responsible for stopping the dev server.
 
+### `shared/playwright-run-script`
+- **In:** localhost URL + an ad-hoc instruction block describing the browser interaction and what to assert.
+- **Does:** runs a one-off Playwright script for novel checks that don't fit a named recipe.
+- **Out:** pass/fail + screenshot path on failure.
+- **When to use:** spoke needs a check no recipe in `playwright-assertions` covers and the check isn't reusable enough to promote to a recipe yet. If a pattern recurs, promote it to `playwright-assertions`.
+
 ### `shared/i18n-coverage`
 - **In:** project path, optional ignore list.
 - **Does:** scans `**/*.view.xml`, `**/*.fragment.xml`, controllers for hardcoded user-facing strings that aren't `{i18n>...}` references.
@@ -229,6 +235,7 @@ checker/
 │           ├── ui5-manifest-parse/SKILL.md
 │           ├── ui5-app-launch/SKILL.md
 │           ├── playwright-assertions/SKILL.md
+│           ├── playwright-run-script/SKILL.md
 │           ├── i18n-coverage/SKILL.md
 │           └── report-format/SKILL.md
 ├── docs/
@@ -274,6 +281,19 @@ The key property that makes this clean: **no spoke owns runtime code today**. Sp
 2. **Task 2-3** spoke as the pilot — exercises every shared skill at minimum complexity. Any contract gaps surface here before being replicated.
 3. The remaining spokes in curriculum order (2-2, 2-5, 3-1, 3-2, 3-3, 3-4, 3-5, 3-6).
 4. Hub last — straightforward once the spokes exist.
+
+## Extensibility — adding new task spokes
+
+The architecture supports adding new tasks without structural changes:
+
+- **New spoke = copy + rename + edit.** Copy any existing spoke directory, rename to `check-task-<m>-<n>`, replace task summary + rubric + runbook. No hub edit needed.
+- **Hub auto-discovery.** The hub matches branches against `^feature/task-(\d+)-(\d+)$` and dispatches by name. New spokes are picked up via the session's available-skills list — no registry to update.
+- **Shared skills stay pure.** Spokes consume them as-is. Novel browser checks use `shared/playwright-run-script` so adding a task never forces an edit to `shared/playwright-assertions`. Patterns that recur across two or more tasks should be promoted to a named recipe in `playwright-assertions`.
+- **Branch-name format is the contract.** Every new task must use `feature/task-<m>-<n>`. Anything else requires `--task` override at invocation.
+- **Cross-task dependencies surface as failed criteria.** Spokes don't model the curriculum's dependency chain. If a student skipped Task 3-2 and submits Task 3-3, the 3-3 rubric will fail naturally on missing prerequisites. Mentor reads "what's missing," not "you skipped a task."
+- **Rubric versioning** is git history. If the curriculum updates a task next cohort, edit the spoke's rubric block; the diff is the changelog.
+
+**Scale target:** the pure-skills design comfortably handles ~10–20 total tasks (the curriculum's likely growth over 1–2 cohorts of expansion). At that scale every spoke remains its own readable prompt and the shared set stays small. If spoke count grows much beyond ~25, revisit the runner choice (Option B in brainstorming — Node library backbone — becomes more attractive once token cost per check matters).
 
 ## Open questions for implementation phase
 

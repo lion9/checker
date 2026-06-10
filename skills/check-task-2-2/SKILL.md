@@ -26,12 +26,12 @@ description: Use to check Task 2-2 PR (generate an empty SAPUI5 Fiori app scaffo
 
 ### 1. Checkout
 
-Invoke `shared/pr-checkout` with the PR URL.
+Invoke `pr-checkout` with the PR URL.
 - On failure: output error, stop.
 
 ### 2. Branch validation
 
-Invoke `shared/branch-validate` with:
+Invoke `branch-validate` with:
 - `branch` = branch from checkout
 - `expected_pattern` = `^feature/task-2-2$`
 - `base` = base from checkout
@@ -41,7 +41,7 @@ Record results for criteria 1 and 2.
 
 ### 3. Manifest check
 
-Invoke `shared/ui5-manifest-parse` with `path`.
+Invoke `ui5-manifest-parse` with `path`.
 - Pass criterion 3 if no error.
 - Criterion 4: pass if manifest result contains non-empty `sap.app`, `sap.ui`, and `sap.ui5` sections.
 
@@ -60,4 +60,4 @@ No runtime checks for this task (app scaffold, no meaningful behavior to drive w
 
 ### 5. Report
 
-Invoke `shared/report-format` with all 10 criteria results.
+Invoke `report-format` with all 10 criteria results.

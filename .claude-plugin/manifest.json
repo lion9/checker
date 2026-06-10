@@ -1,0 +1,9 @@
+{
+  "name": "checker",
+  "version": "1.0.0",
+  "description": "SAPUI5 student PR checker — hub and spoke skills for checking tasks 2-2 through 3-6.",
+  "skills": "../skills",
+  "owner": {
+    "name": "Artyom Vecherov"
+  }
+}
