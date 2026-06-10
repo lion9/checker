@@ -1,0 +1,13 @@
+{
+  "name": "checker",
+  "owner": {
+    "name": "Artyom Vecherov"
+  },
+  "plugins": [
+    {
+      "name": "checker",
+      "source": "./",
+      "description": "SAPUI5 student PR checker skills"
+    }
+  ]
+}
